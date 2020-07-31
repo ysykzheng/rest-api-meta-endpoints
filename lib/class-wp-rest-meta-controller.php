@@ -237,9 +237,9 @@ abstract class WP_REST_Meta_Controller extends WP_REST_Controller {
 		$value     = $data->meta_value;
 
 		// Don't expose protected fields.
-		if ( is_protected_meta( $key ) ) {
-			return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $key ), array( 'status' => 403 ) );
-		}
+		//if ( is_protected_meta( $key ) ) {
+		//	return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $key ), array( 'status' => 403 ) );
+		//}
 
 		// Normalize serialized strings
 		if ( $is_raw && is_serialized_string( $value ) ) {
@@ -323,13 +323,13 @@ abstract class WP_REST_Meta_Controller extends WP_REST_Controller {
 			return new WP_Error( $code, __( 'Invalid provided meta data for action.' ), array( 'status' => 400 ) );
 		}
 
-		if ( is_protected_meta( $current->meta_key ) ) {
-			return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $current->meta_key ), array( 'status' => 403 ) );
-		}
+		// if ( is_protected_meta( $current->meta_key ) ) {
+		// 	return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $current->meta_key ), array( 'status' => 403 ) );
+		// }
 
-		if ( is_protected_meta( $key ) ) {
-			return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $key ), array( 'status' => 403 ) );
-		}
+		// if ( is_protected_meta( $key ) ) {
+		// 	return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $key ), array( 'status' => 403 ) );
+		// }
 
 		// update_metadata_by_mid will return false if these are equal, so check
 		// first and pass through
@@ -398,9 +398,9 @@ abstract class WP_REST_Meta_Controller extends WP_REST_Controller {
 			return new WP_Error( 'rest_meta_invalid_key', __( 'Invalid meta key.' ), array( 'status' => 400 ) );
 		}
 
-		if ( is_protected_meta( $request['key'] ) ) {
-			return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $request['key'] ), array( 'status' => 403 ) );
-		}
+		// if ( is_protected_meta( $request['key'] ) ) {
+		// 	return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $request['key'] ), array( 'status' => 403 ) );
+		// }
 
 		$meta_key = wp_slash( $request['key'] );
 		$value    = wp_slash( $request['value'] );
@@ -461,9 +461,9 @@ abstract class WP_REST_Meta_Controller extends WP_REST_Controller {
 			return new WP_Error( $code, __( 'Invalid existing meta data for action.' ), array( 'status' => 400 ) );
 		}
 
-		if ( is_protected_meta( $current->meta_key ) ) {
-			return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $current->meta_key ), array( 'status' => 403 ) );
-		}
+		// if ( is_protected_meta( $current->meta_key ) ) {
+		// 	return new WP_Error( 'rest_meta_protected', sprintf( __( '%s is marked as a protected field.' ), $current->meta_key ), array( 'status' => 403 ) );
+		// }
 
 		if ( ! delete_metadata_by_mid( $this->parent_type, $mid ) ) {
 			return new WP_Error( 'rest_meta_could_not_delete', __( 'Could not delete meta.' ), array( 'status' => 500 ) );
